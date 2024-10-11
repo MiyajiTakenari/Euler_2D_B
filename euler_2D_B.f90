@@ -29,7 +29,7 @@ program euler_2D_B
         !write (*, *) 'dt = ', dt
         n = n + 1
     end do
-    write(*,'(a9, i3)') 'ntime = ', n - 1
+    write(*,'(a9, i8)') 'ntime = ', n - 1
 
     call alloc(0)
 
