@@ -5,5 +5,5 @@ module globals
     real(8), allocatable, save :: x(:, :), y(:, :), bq(:, :, :), e(:, :, :), f(:, :, :), &
     & mx(:, :), my(:, :), nx(:, :), ny(:, :), s_j(:, :), &
     & bq_n(:, :, :)
-    integer, save :: exit_flag = 0
+    !integer, save :: exit_flag = 0
 end module globals
