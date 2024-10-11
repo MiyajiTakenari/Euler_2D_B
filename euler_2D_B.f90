@@ -4,7 +4,7 @@ program euler_2D_B
     use interface_mod
 
     implicit none
-    integer :: n = 0
+    integer :: n = 1
 
     !time.txtをフォーマット
     open(50, file = 'time.txt')
