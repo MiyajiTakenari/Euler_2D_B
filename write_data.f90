@@ -10,7 +10,7 @@ subroutine writed(n)
     character filename*128
 
     open(10, file = 'data_q.csv')
-    j = 10
+    j = int(jmax / 2)
     do i = imin, imax
         !q(cell center)を表示
         temp_q(:) = bqtoq(bq(i, j, :))
@@ -31,7 +31,7 @@ subroutine writed(n)
     write(11, '(a9, a1, f12.10, a1, a9, a1, i4)') "time =", ',', time, ',', "n_time =", ',', n
     write(11, '(a9, a1, a9, a1, a9, a1, a9, a1, a9)') "x", ',', "rho", ',', "rho*u", ',', "rho*v", ',', "e"
     write(11, '(a9, a1, e12.6, a1, e12.6, a1, e12.6, a1, e12.6)') &
-    & "res", ',', res_x(j, 1), ',', res_x(j, 2), ',', res_x(j, 3), ',', res_x(j, 4)
+    & "res", ',', res(1), ',', res(2), ',', res(3), ',', res(4)
     close(11)
 
     !!以下vtkファイル用
