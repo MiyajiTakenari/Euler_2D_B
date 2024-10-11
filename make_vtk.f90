@@ -23,7 +23,7 @@ program visualize
         if ( iost < 0 ) exit
     end do
     close(Timefi)
-    max_index = int((ntime-1) / 100) + 1 !n=1~100でindex=1, n=101~200でindex=2
+    max_index = int((ntime-1) / 50) + 1 !n=1~100でindex=1, n=101~200でindex=2
     write(*,*) 'ntime=', ntime, 'max_index=', max_index
 
     allocate (x(imin-3:imax+2, jmin-3:jmax+2), y(imin-3:imax+2, jmin-3:jmax+2))

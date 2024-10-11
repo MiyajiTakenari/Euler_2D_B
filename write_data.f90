@@ -40,7 +40,7 @@ subroutine writed(n)
     write(12, *) imin, ',', imax, ',', jmin, ',', jmax
     close(12)
 
-    index = int((n-1) / 100) + 1 !n=1~100でindex=1, n=101~200でindex=2
+    index = int((n-1) / 50) + 1 !n=1~100でindex=1, n=101~200でindex=2
     write(filename,'("Qascii_",i5.5,".dat")') index !index(integer)をfilename(char)に代入し、文字+整数を文字に変換
     open(120+index,file = filename)
     !Qの内容を読み込みます
@@ -55,7 +55,7 @@ subroutine writed(n)
 
     !ntime, time書き出し
     open(50, file = 'time.txt', position = 'append')
-    if (index /= int((n) / 100) + 1) then !index_n /= index_n+1 (cf.n=100,200...)
+    if (index /= int((n) / 50) + 1) then !index_n /= index_n+1 (cf.n=100,200...)
         backspace(50) !前のループで書かれたnに空白を上書き
         backspace(50) !前のループで書かれたfilenameとかに空白を上書き
         write(50, '(a15, a1, i5, a1, f15.10)') filename, ',', n, ',', time
