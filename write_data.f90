@@ -27,14 +27,15 @@ subroutine writed(n)
     !    q        x1(i-1, j-1), x2(i, j-1)
     ! x1   x2     x3(i, j), x4(i-1, j)
 
-    open(11, file = 'data_tres.csv')
-    write(11, '(a9, a1, f12.10, a1, a9, a1, i4)') "time =", ',', time, ',', "n_time =", ',', n
-    write(11, '(a9, a1, a9, a1, a9, a1, a9, a1, a9)') "x", ',', "rho", ',', "rho*u", ',', "rho*v", ',', "e"
-    write(11, '(a9, a1, e12.6, a1, e12.6, a1, e12.6, a1, e12.6)') &
-    & "res", ',', res(1), ',', res(2), ',', res(3), ',', res(4)
+    open(11, file = 'data_res.csv', position = 'append')
+    if ( n == 1 ) then
+        write(11, '(a9, a1, a9, a1, a9, a1, a9, a1, a9, a1, a9)') &
+        & "time", ',', "n_time =", ',', "res_rho", ',', "res_u", ',', "res_v", ',', "res_p"
+    end if
+    write(11, *) time, ',', n, ',', res(1), ',', res(2), ',', res(3), ',', res(4)
     close(11)
 
-    !!以下vtkファイル用
+    !!以下make_vtkファイル用
     !imin, imax, jmin, jmax書き出し
     open(12, file = 'GridNum.txt')
     write(12, *) imin, ',', imax, ',', jmin, ',', jmax
@@ -59,7 +60,7 @@ subroutine writed(n)
         backspace(50) !前のループで書かれたnに空白を上書き
         backspace(50) !前のループで書かれたfilenameとかに空白を上書き
         write(50, '(a15, a1, i5, a1, f15.10)') filename, ',', n, ',', time
-        write(50, *) n
+        write(50, *) n !make_vtkでnmaxを読み込むため
         write(50, *) !filenameとかが消されないよう空白行を追加
     else
         backspace(50)
