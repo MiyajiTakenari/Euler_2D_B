@@ -15,7 +15,7 @@ subroutine init
         enddo
     enddo
 
-    open(20,file = 'Qascii_0.dat')
+    open(20,file = 'Qascii_00000.dat')
     !Qの内容を読み込みます
     rewind(20)
     write(20, *) 'meshfile.txt'
