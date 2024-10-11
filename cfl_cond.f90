@@ -46,5 +46,10 @@ subroutine cflc
     dt = cfl / c_max
 
     time = time + dt
+    !!今のdif_time > 前のdif_timeで計算終わる
+    !if (abs(ex_time - time) > dif_time) then
+        !write(*, *) "time =", time - dt
+        !exit_flag = 1
+    !endif
 
 end subroutine cflc
