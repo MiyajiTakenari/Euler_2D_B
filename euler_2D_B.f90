@@ -4,7 +4,7 @@ program euler_2D_B
     use interface_mod
 
     implicit none
-    integer :: n
+    integer :: n = 0
 
     !time.txtをフォーマット
     open(50, file = 'time.txt')
@@ -18,10 +18,9 @@ program euler_2D_B
     call glid
     call init
     call metrics
-    !時間進める
-    res_x(:, :) = 1.0d0
-    res_y(:, :) = 1.0d0
-    do while (n <= nmax .or. res_x(30, 1) >= 5.0d0 * 10.0d0 ** (-3.0d0))
+    !時間進める(n>nmaxかres(1:4)<res_minでexit)
+    do while (n <= nmax .and. (res(1) >= res_min .or. res(2) >= res_min &
+        & .or. res(3) >= res_min .or. res(4) >= res_min))
         call bound
         call cflc
         call integ
