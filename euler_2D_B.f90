@@ -19,14 +19,16 @@ program euler_2D_B
     call init
     call metrics
     !時間進める
-    do n = 1, nmax
+    res_x(:, :) = 1.0d0
+    res_y(:, :) = 1.0d0
+    do while (n <= nmax .or. res_x(30, 1) >= 5.0d0 * 10.0d0 ** (-3.0d0))
         call bound
         call cflc
-        if (exit_flag == 1) exit
         call integ
         call calc_res
         call writed(n)
         !write (*, *) 'dt = ', dt
+        n = n + 1
     end do
     write(*,'(a9, i3)') 'ntime = ', n - 1
 
