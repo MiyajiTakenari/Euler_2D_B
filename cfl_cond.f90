@@ -4,10 +4,10 @@ subroutine cflc
     use interface_mod, only : bqtoq
 
     implicit none
-    real(8) dif_time, temp_q(4), u1, u2, cmax_m, cmax_n, c_m, c_n, c, c_max
+    real(8) temp_q(4), u1, u2, cmax_m, cmax_n, c_m, c_n, c, c_max !, dif_time,
     integer i, j
     !dif_time: 前回のループで計算したbq(今持ってるbq)の時間と、欲しい解の時間(ex_time)の差
-    dif_time = abs(ex_time - time)
+    !dif_time = abs(ex_time - time)
 
     !↓今回のループで使うdtの計算
     !cmax_m, cmax_nの比較するための初期値
@@ -46,9 +46,5 @@ subroutine cflc
     dt = cfl / c_max
 
     time = time + dt
-    !今のdif_time > 前のdif_timeで計算終わる
-    if (abs(ex_time - time) > dif_time) then
-        write(*, *) "time =", time - dt
-        exit_flag = 1
-    endif
+
 end subroutine cflc
