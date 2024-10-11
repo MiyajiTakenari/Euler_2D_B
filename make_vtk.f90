@@ -45,7 +45,7 @@ program visualize
     !                           ・
     !これに従って読み込むので，40行目はQを出力したファイルの1行目，すなわちメッシュの座標を記載したファイル名を読み込む，ということになります
     !以上の内容はマニュアル著者が利便性のために行った細工なので，ご自身の環境に合わせてファイル読み込みを行ってください
-    write(filename,'("Qascii_",i1.1,".dat")') index !index(integer)をfilename(char)に代入し、文字+整数を文字に変換
+    write(filename,'("Qascii_",i5.5,".dat")') index !index(integer)をfilename(char)に代入し、文字+整数を文字に変換
     open(Qfi,file = filename)
     read(Qfi,*) meshfile
     write(*,*) meshfile
@@ -62,7 +62,7 @@ program visualize
 
     !Qの内容を読み込みます.繰り返し部分追加
     do index = 0, max_index !!Qasciiの個数で変える
-        write(filename,'("Qascii_",i1.1,".dat")') index !index(integer)をfilename(char)に代入し、文字+整数を文字に変換
+        write(filename,'("Qascii_",i5.5,".dat")') index !index(integer)をfilename(char)に代入し、文字+整数を文字に変換
         open(Qfi,file = filename)
         rewind(Qfi) !templeteに追加
         read(Qfi,*) meshfile !templeteに追加, meshfile.txtの名前分ずらす
@@ -75,7 +75,7 @@ program visualize
         Qfi = Qfi + 1 !追加
 
         !paraviewに読み込ませるVTKファイルの名前です．適宜変更してください
-        write(filename,'("x_shocktube_",i3.3,".vtk")') index
+        write(filename,'("x_shocktube_",i5.5,".vtk")') index
         open(fo,file = filename)
 
         !VTKフォーマットに従い，69行目までは指定されています．ただし66行目のFUGAは任意のファイル名なので適宜変更してください
