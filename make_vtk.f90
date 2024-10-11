@@ -75,7 +75,7 @@ program visualize
         Qfi = Qfi + 1 !追加
 
         !paraviewに読み込ませるVTKファイルの名前です．適宜変更してください
-        write(filename,'("x_shocktube_",i5.5,".vtk")') index
+        write(filename,'("ramp_",i5.5,".vtk")') index
         open(fo,file = filename)
 
         !VTKフォーマットに従い，69行目までは指定されています．ただし66行目のFUGAは任意のファイル名なので適宜変更してください
