@@ -41,17 +41,17 @@ subroutine writed(n)
     close(12)
 
     index = int((n-1) / 100) + 1 !n=1~100でindex=1, n=101~200でindex=2
-    write(filename,'("Qascii_",i1.1,".dat")') index !index(integer)をfilename(char)に代入し、文字+整数を文字に変換
-    open(20+index,file = filename)
+    write(filename,'("Qascii_",i5.5,".dat")') index !index(integer)をfilename(char)に代入し、文字+整数を文字に変換
+    open(120+index,file = filename)
     !Qの内容を読み込みます
-    rewind(20+index)
-    write(20+index,*) 'meshfile.txt'
+    rewind(120+index)
+    write(120+index,*) 'meshfile.txt'
     do j= jmin-2, jmax+2
         do i= imin-2, imax+2
-            write(20+index,*) bq(i,j,1), bq(i,j,2), bq(i,j,3), bq(i,j,4)
+            write(120+index,*) bq(i,j,1), bq(i,j,2), bq(i,j,3), bq(i,j,4)
         enddo
     enddo
-    close(20+index)
+    close(120+index)
 
     !ntime, time書き出し
     open(50, file = 'time.txt', position = 'append')
