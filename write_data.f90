@@ -27,13 +27,17 @@ subroutine writed(n)
     !    q        x1(i-1, j-1), x2(i, j-1)
     ! x1   x2     x3(i, j), x4(i-1, j)
 
-    open(11, file = 'data_res.csv', position = 'append')
+    !data_res.csvフォーマット、書き込み
     if ( n == 1 ) then
+        open(11, file = 'data_res.csv')
         write(11, '(a9, a1, a9, a1, a9, a1, a9, a1, a9, a1, a9)') &
         & "time", ',', "n_time =", ',', "res_rho", ',', "res_u", ',', "res_v", ',', "res_p"
+        close(11)
     end if
+    open(11, file = 'data_res.csv', position = 'append')
     write(11, *) time, ',', n, ',', res(1), ',', res(2), ',', res(3), ',', res(4)
     close(11)
+
 
     !!以下make_vtkファイル用
     !imin, imax, jmin, jmax書き出し
@@ -55,6 +59,15 @@ subroutine writed(n)
     close(120+index)
 
     !ntime, time書き出し
+    !time.txtをフォーマット
+    if ( n==1 ) then
+        open(50, file = 'time.txt')
+        write(50, *) 'filename,     n,      time'
+        write(50, *)
+        write(50, *)
+        close(50)
+    end if
+
     open(50, file = 'time.txt', position = 'append')
     if (index /= int((n) / 50) + 1) then !index_n /= index_n+1 (cf.n=100,200...)
         backspace(50) !前のループで書かれたnに空白を上書き
